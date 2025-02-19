@@ -342,11 +342,14 @@
             }
         }
     </style>
+    
+
+    
 </head>
 <body>
     <div class="container">
         <!-- Left Panel - Medicine List -->
-        <div class="panel">
+        <div class="panel" id = "test">
             <div class="panel-header">
                 <h2>My Medications</h2>
                 <button class="action-btn primary-btn">
@@ -496,12 +499,13 @@
             </div>
         </div>
     </div>
-
+    <script src = "chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dotenv@16.4.7/lib/main.min.js"></script>
     <script>
         function toggleDetails(card) {
             const details = card.querySelector('.medicine-details');
             const allDetails = document.querySelectorAll('.medicine-details');
-            
+            generateContent(details)
             // Close all other details
             allDetails.forEach(detail => {
                 if (detail !== details) {
@@ -539,20 +543,8 @@
             responseDiv.classList.add('loading');
             
             try {
-                const response = await simulateApiCall(question);
-                responseDiv.classList.remove('loading');
-                
-                // Stream the response
-                let index = 0;
-                const streamResponse = () => {
-                    if (index < response.length) {
-                        responseDiv.innerHTML += response.charAt(index);
-                        index++;
-                        setTimeout(streamResponse, 20);
-                    }
-                };
-                
-                streamResponse();
+               
+                generateContent()
             } catch (error) {
                 responseDiv.classList.remove('loading');
                 responseDiv.innerHTML = '<p style="color: #dc2626;">Sorry, there was an error processing your question. Please try again.</p>';
