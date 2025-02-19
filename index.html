@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Patient Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-light: #dbeafe;
+            --success-color: #16a34a;
+            --warning-color: #ea580c;
+            --background: #f8fafc;
+            --panel-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+        }
+
+        body {
+            background-color: var(--background);
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .medicine-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .medicine-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .medicine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .medicine-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .medicine-badge {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .badge-active {
+            background-color: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .badge-expiring {
+            background-color: #ffedd5;
+            color: var(--warning-color);
+        }
+
+        .medicine-details {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+            animation: slideDown 0.3s ease;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .detail-item {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .detail-item h4 {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .patient-info {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .patient-avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .patient-details h3 {
+            margin-bottom: 8px;
+        }
+
+        .suggested-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .question-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .question-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .question-btn i {
+            color: var(--primary-color);
+        }
+
+        .ai-response {
+            margin-top: 24px;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .ai-response.loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+            animation: loading 1.5s infinite;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-btn {
+            background: #f1f5f9;
+            color: var(--text-primary);
+        }
+
+        .secondary-btn:hover {
+            background: #e2e8f0;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Scrollbar styling */
+        .panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .panel::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .panel::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .panel::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .panel {
+                height: auto;
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .patient-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .patient-avatar {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel - Medicine List -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>My Medications</h2>
+                <button class="action-btn primary-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Medication
+                </button>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search medications..." onkeyup="searchMedications(this.value)">
+            </div>
+
+            <div class="medicine-list">
+                <div class="medicine-card" onclick="toggleDetails(this)">
+                    <div class="medicine-header">
+                        <div class="medicine-title">
+                            <i class="fas fa-pills" style="color: var(--primary-color)"></i>
+                            <h3>Amoxicillin 500mg</h3>
+                        </div>
+                        <span class="medicine-badge badge-active">Active</span>
+                    </div>
+                    <div class="medicine-details">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4>Frequency</h4>
+                                <p>3 times per day</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Duration</h4>
+                                <p>2 weeks</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Progress</h4>
+                                <p>8 days remaining</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 42%"></div>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Next Dose</h4>
+                                <p>In 2 hours</p>
+                            </div>
+                        </div>
+                        <p><strong>Instructions:</strong> Take with food. Complete the full course.</p>
+                        <div class="quick-actions">
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-bell"></i>
+                                Set Reminder
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-notes-medical"></i>
+                                View History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medicine-card" onclick="toggleDetails(this)">
+                    <div class="medicine-header">
+                        <div class="medicine-title">
+                            <i class="fas fa-capsules" style="color: var(--warning-color)"></i>
+                            <h3>Lisinopril 10mg</h3>
+                        </div>
+                        <span class="medicine-badge badge-expiring">Refill Soon</span>
+                    </div>
+                    <div class="medicine-details">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <h4>Frequency</h4>
+                                <p>Once daily</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Duration</h4>
+                                <p>Ongoing</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Supply Left</h4>
+                                <p>5 days remaining</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 15%"></div>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Next Dose</h4>
+                                <p>Tomorrow 8:00 AM</p>
+                            </div>
+                        </div>
+                        <p><strong>Instructions:</strong> Take in the morning. Avoid grapefruit.</p>
+                        <div class="quick-actions">
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-bell"></i>
+                                Set Reminder
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-prescription-bottle-medical"></i>
+                                Request Refill
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - AI Assistant -->
+        <div class="panel">
+            <div class="patient-info">
+                <div class="patient-avatar">JD</div>
+                <div class="patient-details">
+                    <h3>John Doe</h3>
+                    <p>Next Appointment: March 1, 2025</p>
+                    <p style="color: var(--text-secondary)">Patient ID: #12345</p>
+                </div>
+            </div>
+            
+            <div class="ai-assistant">
+                <h3>AI Health Assistant</h3>
+                <p style="color: var(--text-secondary); margin: 12px 0;">Get quick answers about your medications</p>
+                
+                <div class="suggested-questions">
+                    <button class="question-btn" onclick="askQuestion('What are the side effects of Amoxicillin?')">
+                        <i class="fas fa-circle-question"></i>
+                        What are the side effects of Amoxicillin?
+                    </button>
+                    <button class="question-btn" onclick="askQuestion('How should I store my medications?')">
+                        <i class="fas fa-box-archive"></i>
+                        How should I store my medications?
+                    </button>
+                    <button class="question-btn" onclick="askQuestion('What if I miss a dose?')">
+                        <i class="fas fa-clock"></i>
+                        What if I miss a dose?
+                    </button>
+                    <button class="question-btn" onclick="askQuestion('Can I take these medications together?')">
+                        <i class="fas fa-layer-group"></i>
+                        Can I take these medications together?
+                    </button>
+                </div>
+                
+                <div class="ai-response" id="aiResponse">
+                    <p style="color: var(--text-secondary)">Select a question above or type your own below</p>
+                </div>
+
+                <div class="search-bar" style="margin-top: 20px;">
+                    <i class="fas fa-message"></i>
+                    <input type="text" placeholder="Type your question here..." onkeypress="handleCustomQuestion(event)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(card) {
+            const details = card.querySelector('.medicine-details');
+            const allDetails = document.querySelectorAll('.medicine-details');
+            
+            // Close all other details
+            allDetails.forEach(detail => {
+                if (detail !== details) {
+                    detail.style.display = 'none';
+                }
+            });
+
+            // Toggle clicked details with animation
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                details.style.display = 'block';
+            }
+        }
+
+        function searchMedications(query) {
+            query = query.toLowerCase();
+            const cards = document.querySelectorAll('.medicine-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const details = card.querySelector('.medicine-details').textContent.toLowerCase();
+                
+                if (title.includes(query) || details.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        async function askQuestion(question) {
+            const responseDiv = document.getElementById('aiResponse');
+            responseDiv.innerHTML = '';
+            responseDiv.classList.add('loading');
+            
+            try {
+                const response = await simulateApiCall(question);
+                responseDiv.classList.remove('loading');
+                
+                // Stream the response
+                let index = 0;
+                const streamResponse = () => {
+                    if (index < response.length) {
+                        responseDiv.innerHTML += response.charAt(index);
+                        index++;
+                        setTimeout(streamResponse, 20);
+                    }
+                };
+                
+                streamResponse();
+            } catch (error) {
+                responseDiv.classList.remove('loading');
+                responseDiv.innerHTML = '<p style="color: #dc2626;">Sorry, there was an error processing your question. Please try again.</p>';
+            }
+        }
+
+        function handleCustomQuestion(event) {
+            if (event.key === 'Enter') {
+                const question = event.target.value.trim();
+                if (question) {
+                    askQuestion(question);
+                    event.target.value = '';
+                }
+            }
+        }
+
+        // Simulate API call - Replace this with your actual API implementation
+        function simulateApiCall(question) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const responses = {
+                        'What are the side effects of Amoxicillin?': 
+                            'Common side effects of Amoxicillin may include:\n\n• Nausea and vomiting\n• Diarrhea\n• Rash\n• Stomach pain\n\nContact your healthcare provider immediately if you experience severe stomach pain, allergic reactions, or difficulty breathing.',
+                        'How should I store my medications?': 
+                            'To properly store your medications:\n\n• Keep them in a cool, dry place away from direct sunlight\n• Store at room temperature (20-25°C) unless specified otherwise\n• Keep in original containers with proper labels\n• Store out of reach of children and pets\n• Don\'t store in bathroom cabinet due to humidity',
+                        'What if I miss a dose?': 
+                            'If you miss a dose:\n\n• Take it as soon as you remember\n• If it\'s almost time for your next dose, skip the missed dose\n• Never take double doses to make up for missed ones\n• Set reminders to help stay on schedule\n\nContact your healthcare provider if you\'re unsure about what to do.',
+                        'Can I take these medications together?': 
+                            'Based on your current medications:\n\n• Amoxicillin and Lisinopril can be taken together safely\n• Take Amoxicillin with food to reduce stomach upset\n• Space out the medications by at least 2 hours\n• Always inform your healthcare provider about all medications you\'re taking'
+                    };
+                    resolve(responses[question] || 'I\'ll help you find information about that. Please note that you should always consult your healthcare provider for medical advice specific to your situation.');
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
