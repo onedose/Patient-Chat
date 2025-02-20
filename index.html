@@ -43,97 +43,471 @@
                 <input type="text" placeholder="Search medications..." onkeyup="searchMedications(this.value)">
             </div>
 
-            <div class="medicine-list">
-                <!-- Medicine Card 1 -->
-                <div class="medicine-card" onclick="toggleDetails(this)">
-                    <div class="medicine-header">
-                        <div class="medicine-title">
-                            <i class="fas fa-pills" style="color: var(--primary-color)"></i>
-                            <h3>Amoxicillin 500mg</h3>
-                        </div>
-                        <span class="medicine-badge badge-active">Active</span>
+            <!-- Replace the existing medicine-list div with this updated version -->
+<div class="medicine-list">
+    <!-- Morning Medications -->
+    <div class="time-group">
+        
+        <!-- Aspirin -->
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--primary-color)"></i>
+                    <h3>Aspirin 75mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
                     </div>
-                    <div class="medicine-details" style="display: none;">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <h4>Day Frequency</h4>
-                                <p>M-T-0-0-0-Sa-Su</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Dose Frequency</h4>
-                                <p>1-1-1-0</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Progress</h4>
-                                <p>14 days remaining</p>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 40%"></div>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Duration</h4>
-                                <p>05/02/2025 - 07/03/2025</p>
-                            </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
-                        <p><strong>Instructions:</strong> Take with food. Complete the full course.</p>
-                        <div class="quick-actions">
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-notes-medical"></i>
-                                View History
-                            </button>
-                            <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
-                                <i class="fas fa-info-circle"></i>
-                                Explain Medicine
-                            </button>
-                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Long-term</p>
                     </div>
                 </div>
-
-                <!-- Medicine Card 2 -->
-                <div class="medicine-card" onclick="toggleDetails(this)">
-                    <div class="medicine-header">
-                        <div class="medicine-title">
-                            <i class="fas fa-capsules" style="color: var(--warning-color)"></i>
-                            <h3>Lisinopril 10mg</h3>
-                        </div>
-                        <span class="medicine-badge badge-expiring">Refill Soon</span>
-                    </div>
-                    <div class="medicine-details" style="display: none;">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <h4>Frequency</h4>
-                                <p>Once daily</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Duration</h4>
-                                <p>Ongoing</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Supply Left</h4>
-                                <p>5 days remaining</p>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 15%"></div>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Next Dose</h4>
-                                <p>Tomorrow 8:00 AM</p>
-                            </div>
-                        </div>
-                        <p><strong>Instructions:</strong> Take in the morning. Avoid grapefruit.</p>
-                        <div class="quick-actions">
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-notes-medical"></i>
-                                View History
-                            </button>
-                            <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
-                                <i class="fas fa-info-circle"></i>
-                                Explain Medicine
-                            </button>
-                        </div>
-                    </div>
+                <p><strong>Instructions:</strong> Take with food to prevent blood clots. Do not stop without consulting a doctor.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
                 </div>
             </div>
+        </div>
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--primary-color)"></i>
+                    <h3>Ramipril 5 mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Long-term</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> Take with food to prevent blood clots. Do not stop without consulting a doctor.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--primary-color)"></i>
+                    <h3>Atorvastatin 40mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Long-term</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> Take with food to prevent blood clots. Do not stop without consulting a doctor.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metformin -->
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-capsules" style="color: var(--primary-color)"></i>
+                    <h3>Metformin 500mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Continuous</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> For blood sugar control. Stop if experiencing nausea, muscle pain, or severe weakness.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar format for other morning medications -->
+    </div>
+
+    <!-- Afternoon Medications -->
+    <div class="time-group">
+        
+        <!-- Furosemide -->
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--warning-color)"></i>
+                    <h3>Furosemide 40mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Continuous</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> For fluid retention. Monitor urine output; stop if severe dehydration, dizziness, or weakness occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--warning-color)"></i>
+                    <h3>Clopidogrel 75mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Continuous</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> For fluid retention. Monitor urine output; stop if severe dehydration, dizziness, or weakness occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar format for other afternoon medications -->
+    </div>
+
+    <!-- Evening Medications -->
+    <div class="time-group">
+        
+        <!-- Diltiazem -->
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--success-color)"></i>
+                    <h3>Diltiazem 120mg SR</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Continuous</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> For heart rate and BP control. Do not take with grapefruit juice; stop if severe dizziness or slow heart rate occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--success-color)"></i>
+                    <h3>Metoprolol 50 mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Continuous</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> For heart rate and BP control. Do not take with grapefruit juice; stop if severe dizziness or slow heart rate occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar format for other evening medications -->
+    </div>
+
+    <!-- Night Medications -->
+    <div class="time-group">
+        
+        <!-- Warfarin -->
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--danger-color)"></i>
+                    <h3>Warfarin 5mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Long-term</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> To prevent stroke. Avoid green leafy vegetables; get INR checked regularly. Stop if excessive bleeding, black stools, or unusual bruising occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="medicine-card" onclick="toggleDetails(this)">
+            <div class="medicine-header">
+                <div class="medicine-title">
+                    <i class="fas fa-pills" style="color: var(--danger-color)"></i>
+                    <h3>Spironolactone 25 mg</h3>
+                </div>
+                <span class="medicine-badge badge-active">Active</span>
+            </div>
+            <div class="medicine-details" style="display: none;">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>Day Frequency</h4>
+                        <p>M-T-W-Th-F-Sa-Su</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Dose Frequency</h4>
+                        <p>1-0-0-0</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Quantity</h4>
+                        <p>1 tablet</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Duration</h4>
+                        <p>Long-term</p>
+                    </div>
+                </div>
+                <p><strong>Instructions:</strong> To prevent stroke. Avoid green leafy vegetables; get INR checked regularly. Stop if excessive bleeding, black stools, or unusual bruising occurs.</p>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn">
+                        <i class="fas fa-notes-medical"></i>
+                        View History
+                    </button>
+                    <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                        <i class="fas fa-info-circle"></i>
+                        Explain Medicine
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
         </div>
 
         <!-- Right Panel - AI Assistant -->
@@ -203,11 +577,11 @@
                             <div class="message-content">
                                 <p>Quick suggestions:</p>
                                 <div class="quick-suggestions">
-                                    <button class="suggestion-chip" onclick="sendQuickQuestion('What are the side effects of Amoxicillin?')">
-                                        <i class="fas fa-pills"></i> Amoxicillin Effects
+                                    <button class="suggestion-chip" onclick="sendQuickQuestion('What medications are due now?')">
+                                        <i class="fas fa-pills"></i> Medications Due
                                     </button>
-                                    <button class="suggestion-chip" onclick="sendQuickQuestion('How should I store my medications?')">
-                                        <i class="fas fa-box-archive"></i> Medication Storage
+                                    <button class="suggestion-chip" onclick="sendQuickQuestion('What about Janki\'s surgery?')">
+                                        <i class="fas fa-calendar-alt"></i> Surgery Preparation
                                     </button>
                                     <button class="suggestion-chip" onclick="sendQuickQuestion('What if I miss a dose?')">
                                         <i class="fas fa-clock"></i> Missed Dose
@@ -263,6 +637,89 @@
     <script src="chat.js"></script>
     <script src="patient-search.js"></script>
     <script>
+        // Enhanced Text-to-Speech Implementation
+function speakMessage(message, lang = 'en-US') {
+    // Check if speech synthesis is supported
+    if (!('speechSynthesis' in window)) {
+        console.error('Text-to-speech not supported in this browser');
+        alert('Text-to-speech is not supported in your browser');
+        return;
+    }
+
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    // Create utterance
+    const utterance = new SpeechSynthesisUtterance(message);
+    
+    // Configure speech settings
+    utterance.lang = lang;
+    utterance.rate = 1.0;  // Normal speed
+    utterance.pitch = 1.0; // Normal pitch
+    utterance.volume = 1.0; // Maximum volume
+
+    // Select appropriate voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(voice => 
+        voice.lang.startsWith(lang) && !voice.localService
+    ) || voices.find(voice => 
+        voice.lang.startsWith(lang)
+    ) || voices[0];
+
+    if (preferredVoice) {
+        utterance.voice = preferredVoice;
+    }
+
+    // Add event handlers
+    utterance.onstart = () => {
+        console.log('Started speaking');
+        // Visual feedback that speech has started
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+            speakBtn.style.color = '#4caf50';
+        }
+    };
+
+    utterance.onend = () => {
+        console.log('Finished speaking');
+        // Reset button state
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            speakBtn.style.color = '';
+        }
+    };
+
+    utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        alert('There was an error playing the speech. Please try again.');
+        // Reset button state
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            speakBtn.style.color = '';
+        }
+    };
+
+    // Initialize voices if they haven't been loaded yet
+    if (window.speechSynthesis.getVoices().length === 0) {
+        window.speechSynthesis.addEventListener('voiceschanged', () => {
+            // Try speaking again once voices are loaded
+            window.speechSynthesis.speak(utterance);
+        }, { once: true });
+    } else {
+        // Speak immediately if voices are already loaded
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+// Initialize voices as soon as possible
+document.addEventListener('DOMContentLoaded', () => {
+    // Force loading of voices
+    window.speechSynthesis.getVoices();
+});
+        
         // Initial toggleDetails function for expanding/collapsing cards
         // Speech Recognition Setup
 const setupSpeechRecognition = () => {
@@ -428,27 +885,123 @@ document.addEventListener('DOMContentLoaded', setupSpeechRecognition);
         function appendMessage(message, type) {
             const chatMessages = document.getElementById('chatMessages');
             const messageElement = createMessageElement(message, type);
+            
+            // Add speak button for bot messages
+            if (type === 'bot') {
+                const speakButton = document.createElement('button');
+                speakButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                speakButton.classList.add('speak-btn');
+                speakButton.onclick = () => {
+                    // Determine language based on current language toggle
+                    const activeLangBtn = document.querySelector('.language-btn.active');
+                    const lang = activeLangBtn ? activeLangBtn.dataset.lang : 'en';
+                    speakMessage(message, lang === 'hi' ? 'hi-IN' : 'en-US');
+                };
+                messageElement.querySelector('.message-content').appendChild(speakButton);
+            }
+            
             chatMessages.appendChild(messageElement);
             
             // Scroll to bottom
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        async function sendQuickQuestion(question) {
-            // Add user message
-            appendMessage(question, 'user');
+        function sendQuickQuestion(question) {
+    // Add user message
+    appendMessage(question, 'user');
 
-            try {
-                // Use fetchGeminiResponse from chat.js
-                const response = await fetchGeminiResponse(question);
-                
-                // Add bot response
-                appendMessage(response, 'bot');
-            } catch (error) {
-                appendMessage('Sorry, I couldn\'t process that request.', 'bot');
-            }
+    // Bilingual static responses
+    const staticResponses = {
+        'What medications are due now?': {
+            en: `It's 2 PM, so it's time for Janki Devi's afternoon medications.
+She needs to take:
+Furosemide 40 mg (1 tablet) for fluid retention. Remember to monitor her urine output and watch for side effects like severe dehydration, dizziness, or weakness.
+Clopidogrel 75 mg (1 tablet) to prevent clots. Remind her to stop taking this medication 5 days before any planned surgery or dental procedure.
+Let me know if you need any more information about Janki Devi or her medications!`,
+            hi: `अभी दोपहर 2 बजे हैं, इसलिए जानकी देवी की दोपहर की दवाएं लेने का समय हो गया है।
+उन्हें लेना है:
+फ्यूरोसेमाइड 40 मिलीग्राम (1 टैबलेट) तरल प्रतिधारण के लिए। उनके मूत्र उत्पादन की निगरानी करना और गंभीर निर्जलीकरण, चक्कर आना, या कमजोरी जैसे दुष्प्रभावों पर ध्यान देना याद रखें।
+क्लोपिडोग्रेल 75 मिलीग्राम (1 टैबलेट) रक्त के थक्कों को रोकने के लिए। उन्हें याद दिलाएं कि किसी भी नियोजित सर्जरी या दंत चिकित्सा प्रक्रिया से 5 दिन पहले इस दवा को लेना बंद कर दें।
+अगर आपको जानकी देवी या उनकी दवाओं के बारे में कोई और जानकारी चाहिए तो मुझे बताएं!`
+        },
+        'What about Janki\'s surgery?': {
+            en: `I understand Janki Devi has a surgery planned for the day after tomorrow.
+
+Important Reminder:
+Janki needs to stop taking Clopidogrel 75 mg five days before any surgery or dental procedure. This is critical to minimize the risk of excessive bleeding during the procedure.
+
+Recommended Action:
+Immediately inform the doctor about the planned surgery.
+Confirm with the doctor whether and when to stop Clopidogrel, as well as any other medications, considering her complex medical history.
+Time is crucial in this situation to ensure Janki's safety.`,
+            hi: `मैं समझता हूं कि जानकी देवी की सर्जरी परसों के लिए नियोजित है।
+
+महत्वपूर्ण अनुस्मारक:
+जानकी को किसी भी सर्जरी या दंत चिकित्सा प्रक्रिया से पांच दिन पहले क्लोपिडोग्रेल 75 मिलीग्राम लेना बंद करना होगा। प्रक्रिया के दौरान अत्यधिक रक्तस्राव के जोखिम को कम करने के लिए यह महत्वपूर्ण है।
+
+अनुशंसित कार्रवाई:
+नियोजित सर्जरी के बारे में तुरंत डॉक्टर को सूचित करें।
+डॉक्टर से पुष्टि करें कि क्लोपिडोग्रेल और अन्य दवाओं को कब बंद करना है, उनके जटिल चिकित्सा इतिहास को ध्यान में रखते हुए।
+जानकी की सुरक्षा सुनिश्चित करने के लिए समय महत्वपूर्ण है।`
         }
+    };
 
+    // Create and append bot response with both languages
+    if (staticResponses[question]) {
+        const response = staticResponses[question];
+        
+        // Create message container
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', 'bot-message');
+        
+        // Create content container
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('message-content');
+        
+        // Add English response
+        const enText = document.createElement('p');
+        enText.textContent = response.en;
+        contentDiv.appendChild(enText);
+        
+        // Add Hindi response
+        const hiText = document.createElement('p');
+        hiText.textContent = response.hi;
+        hiText.style.marginTop = '10px';
+        contentDiv.appendChild(hiText);
+        
+        // Add language-specific speak buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.marginTop = '10px';
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.gap = '10px';
+        
+        // English speak button
+        const speakEnBtn = document.createElement('button');
+        speakEnBtn.innerHTML = '<i class="fas fa-volume-up"></i> English';
+        speakEnBtn.classList.add('speak-btn');
+        speakEnBtn.onclick = () => speakMessage(response.en, 'en-US');
+        buttonContainer.appendChild(speakEnBtn);
+        
+        // Hindi speak button
+        const speakHiBtn = document.createElement('button');
+        speakHiBtn.innerHTML = '<i class="fas fa-volume-up"></i> हिंदी';
+        speakHiBtn.classList.add('speak-btn');
+        speakHiBtn.onclick = () => speakMessage(response.hi, 'hi-IN');
+        buttonContainer.appendChild(speakHiBtn);
+        
+        contentDiv.appendChild(buttonContainer);
+        messageDiv.appendChild(contentDiv);
+        
+        // Add to chat
+        document.getElementById('chatMessages').appendChild(messageDiv);
+        document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+    } else {
+        // Handle non-static questions as before
+        fetchGeminiResponse(question)
+            .then(response => appendMessage(response, 'bot'))
+            .catch(() => appendMessage('Sorry, I couldn\'t process that request.', 'bot'));
+    }
+}
         function handleChatInput(event) {
             if (event.key === 'Enter') {
                 sendMessage();
@@ -520,14 +1073,15 @@ document.addEventListener('DOMContentLoaded', setupSpeechRecognition);
         playButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const activeInstructionText = button.closest('.instruction-text').textContent.trim();
-
                 
                 // Use Web Speech API for text-to-speech
                 if ('speechSynthesis' in window) {
                     const utterance = new SpeechSynthesisUtterance(activeInstructionText);
+                    
                     // Set language based on active language
-                    console.log(button.closest('.instruction-text').dataset.lang);
-                    utterance.lang = button.closest('.instruction-text').dataset.lang === 'hi' ? 'hi-IN' : 'en-US';
+                    const lang = button.closest('.instruction-text').dataset.lang;
+                    utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
+                    
                     window.speechSynthesis.cancel();
                     window.speechSynthesis.speak(utterance);
                 } else {
@@ -535,6 +1089,101 @@ document.addEventListener('DOMContentLoaded', setupSpeechRecognition);
                 }
             });
         });
+
+        // Add a global text-to-speech function for chat messages
+        // Enhanced Text-to-Speech Implementation
+function speakMessage(message, lang = 'en-US') {
+    // Check if speech synthesis is supported
+    if (!('speechSynthesis' in window)) {
+        console.error('Text-to-speech not supported in this browser');
+        alert('Text-to-speech is not supported in your browser');
+        return;
+    }
+
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    // Create utterance
+    const utterance = new SpeechSynthesisUtterance(message);
+    
+    // Configure speech settings
+    utterance.lang = lang;
+    utterance.rate = 1.0;  // Normal speed
+    utterance.pitch = 1.0; // Normal pitch
+    utterance.volume = 1.0; // Maximum volume
+
+    // Select appropriate voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(voice => 
+        voice.lang.startsWith(lang) && !voice.localService
+    ) || voices.find(voice => 
+        voice.lang.startsWith(lang)
+    ) || voices[0];
+
+    if (preferredVoice) {
+        utterance.voice = preferredVoice;
+    }
+
+    // Add event handlers
+    utterance.onstart = () => {
+        console.log('Started speaking');
+        // Visual feedback that speech has started
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+            speakBtn.style.color = '#4caf50';
+        }
+    };
+
+    utterance.onend = () => {
+        console.log('Finished speaking');
+        // Reset button state
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            speakBtn.style.color = '';
+        }
+    };
+
+    utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        alert('There was an error playing the speech. Please try again.');
+        // Reset button state
+        const speakBtn = document.querySelector('.speak-btn');
+        if (speakBtn) {
+            speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            speakBtn.style.color = '';
+        }
+    };
+
+    // Initialize voices if they haven't been loaded yet
+    if (window.speechSynthesis.getVoices().length === 0) {
+        window.speechSynthesis.addEventListener('voiceschanged', () => {
+            // Try speaking again once voices are loaded
+            window.speechSynthesis.speak(utterance);
+        }, { once: true });
+    } else {
+        // Speak immediately if voices are already loaded
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+        // Add CSS for speak button
+        const speakButtonStyle = document.createElement('style');
+        speakButtonStyle.textContent = `
+.speak-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.speak-btn:hover {
+    color: var(--primary-hover);
+}
+`;
+        document.head.appendChild(speakButtonStyle);
     });
     </script>
 </body>
