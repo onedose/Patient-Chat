@@ -6,7 +6,7 @@
     <title>Enhanced Patient Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
+ * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -14,67 +14,84 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --primary-light: #dbeafe;
-            --success-color: #16a34a;
-            --warning-color: #ea580c;
-            --background: #f8fafc;
-            --panel-bg: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
+            --primary-color: #007a99;
+            --primary-hover: #005f73;
+            --background-color: #f4f9fc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #1a1a1a;
+            --secondary-text-color: #4a4a4a;
+            --border-color: rgba(0, 122, 153, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
         }
 
         body {
-            background-color: var(--background);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
             padding: 20px;
-            color: var(--text-primary);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 122, 153, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 122, 153, 0.05) 0%, transparent 50%);
         }
 
         .container {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 24px;
+            gap: 32px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .panel {
-            background: var(--panel-bg);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 8px 32px var(--shadow-color);
             height: calc(100vh - 40px);
             overflow-y: auto;
             position: relative;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 122, 153, 0.1);
+        }
+
+        .panel-header h2 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         .search-bar {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            display: flex;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 12px 40px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            padding: 16px 48px;
+            border: 2px solid rgba(0, 122, 153, 0.2);
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .search-bar input:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(0, 122, 153, 0.1);
+            background: white;
         }
 
         .search-bar i {
@@ -82,27 +99,25 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        .medicine-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
         }
 
         .medicine-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
+            background: white;
+            border: 1px solid rgba(0, 122, 153, 0.15);
+            border-radius: 16px;
+            padding: 24px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px var(--shadow-color);
         }
 
         .medicine-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 24px var(--shadow-color);
+            border-color: var(--primary-color);
         }
 
         .medicine-header {
@@ -114,161 +129,131 @@
         .medicine-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+        }
+
+        .medicine-title i {
+            font-size: 1.5rem;
+        }
+
+        .medicine-title h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .medicine-badge {
-            padding: 4px 12px;
-            border-radius: 16px;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .badge-active {
-            background-color: #dcfce7;
+            background-color: rgba(16, 185, 129, 0.1);
             color: var(--success-color);
         }
 
         .badge-expiring {
-            background-color: #ffedd5;
+            background-color: rgba(245, 158, 11, 0.1);
             color: var(--warning-color);
         }
 
         .medicine-details {
             display: none;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid #e2e8f0;
-            animation: slideDown 0.3s ease;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 122, 153, 0.1);
+            animation: slideDown 0.4s ease;
         }
 
         .detail-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .detail-item {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 8px;
+            background: rgba(0, 122, 153, 0.03);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 122, 153, 0.1);
         }
 
         .detail-item h4 {
-            color: var(--text-secondary);
+            color: var(--secondary-text-color);
             font-size: 0.875rem;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-item p {
+            font-weight: 500;
+            color: var(--text-color);
         }
 
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: #e2e8f0;
+            background: rgba(0, 122, 153, 0.1);
             border-radius: 4px;
-            margin-top: 8px;
+            margin-top: 12px;
+            overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background: var(--primary-color);
             border-radius: 4px;
-            transition: width 0.3s ease;
+            transition: width 0.5s ease;
         }
 
         .patient-info {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 20px;
+            gap: 24px;
             align-items: center;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 1px solid rgba(0, 122, 153, 0.1);
         }
 
         .patient-avatar {
-            width: 64px;
-            height: 64px;
-            background: var(--primary-light);
+            width: 72px;
+            height: 72px;
+            background: rgba(0, 122, 153, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
+            border: 2px solid var(--primary-color);
         }
 
         .patient-details h3 {
+            font-size: 1.4rem;
             margin-bottom: 8px;
-        }
-
-        .suggested-questions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .question-btn {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 16px;
-            border-radius: 12px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .question-btn:hover {
-            background: var(--primary-light);
-            border-color: var(--primary-color);
             color: var(--primary-color);
-        }
-
-        .question-btn i {
-            color: var(--primary-color);
-        }
-
-        .ai-response {
-            margin-top: 24px;
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 20px;
-            min-height: 120px;
-            position: relative;
-        }
-
-        .ai-response.loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
-            animation: loading 1.5s infinite;
-        }
-
-        .quick-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
         }
 
         .action-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
             border: none;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.95rem;
         }
 
         .primary-btn {
@@ -277,51 +262,81 @@
         }
 
         .primary-btn:hover {
-            background: #1d4ed8;
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 122, 153, 0.2);
         }
 
         .secondary-btn {
-            background: #f1f5f9;
-            color: var(--text-primary);
+            background: rgba(0, 122, 153, 0.1);
+            color: var(--primary-color);
         }
 
         .secondary-btn:hover {
-            background: #e2e8f0;
+            background: rgba(0, 122, 153, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+
+        .question-btn {
+            background: white;
+            border: 1px solid rgba(0, 122, 153, 0.15);
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .question-btn:hover {
+            background: rgba(0, 122, 153, 0.05);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .question-btn i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .ai-response {
+            margin-top: 32px;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 120px;
+            position: relative;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 1px solid rgba(0, 122, 153, 0.1);
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
-        @keyframes loading {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Scrollbar styling */
-        .panel::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .panel::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 4px;
-        }
-
-        .panel::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        .panel::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .container {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
             .panel {
                 height: auto;
@@ -330,6 +345,12 @@
         }
 
         @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .panel {
+                padding: 20px;
+            }
             .detail-grid {
                 grid-template-columns: 1fr;
             }
@@ -341,6 +362,41 @@
                 margin: 0 auto;
             }
         }
+
+        /* Doctor Instructions Styles */
+        .doctor-instructions {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 1px solid rgba(0, 122, 153, 0.1);
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 12px;
+        }
+
+        .language-toggle .action-btn {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+        }
+
+        .language-toggle .action-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .instruction-content {
+            margin-top: 20px;
+        }
+
+        .instruction-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
     </style>
     
 
@@ -349,13 +405,9 @@
 <body>
     <div class="container">
         <!-- Left Panel - Medicine List -->
-        <div class="panel" id = "test">
+        <div class="panel">
             <div class="panel-header">
                 <h2>My Medications</h2>
-                <button class="action-btn primary-btn">
-                    <i class="fas fa-plus"></i>
-                    Add Medication
-                </button>
             </div>
             
             <div class="search-bar">
@@ -364,6 +416,7 @@
             </div>
 
             <div class="medicine-list">
+                <!-- Medicine Card 1 -->
                 <div class="medicine-card" onclick="toggleDetails(this)">
                     <div class="medicine-header">
                         <div class="medicine-title">
@@ -372,26 +425,26 @@
                         </div>
                         <span class="medicine-badge badge-active">Active</span>
                     </div>
-                    <div class="medicine-details">
+                    <div class="medicine-details" style="display: none;">
                         <div class="detail-grid">
                             <div class="detail-item">
-                                <h4>Frequency</h4>
-                                <p>3 times per day</p>
+                                <h4>Day Frequency</h4>
+                                <p>M-T-0-0-0-Sa-Su</p>
                             </div>
                             <div class="detail-item">
-                                <h4>Duration</h4>
-                                <p>2 weeks</p>
+                                <h4>Dose Frequency</h4>
+                                <p>1-1-1-0</p>
                             </div>
                             <div class="detail-item">
                                 <h4>Progress</h4>
-                                <p>8 days remaining</p>
+                                <p>14 days remaining</p>
                                 <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 42%"></div>
+                                    <div class="progress-fill" style="width: 40%"></div>
                                 </div>
                             </div>
                             <div class="detail-item">
-                                <h4>Next Dose</h4>
-                                <p>In 2 hours</p>
+                                <h4>Duration</h4>
+                                <p>05/02/2025 - 07/03/2025</p>
                             </div>
                         </div>
                         <p><strong>Instructions:</strong> Take with food. Complete the full course.</p>
@@ -404,10 +457,15 @@
                                 <i class="fas fa-notes-medical"></i>
                                 View History
                             </button>
+                            <button class="action-btn secondary-btn explain-medicine-btn" id="Amoxicillin-button" onclick="event.stopPropagation()">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                Explain Medicine
+                            </button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Medicine Card 2 -->
                 <div class="medicine-card" onclick="toggleDetails(this)">
                     <div class="medicine-header">
                         <div class="medicine-title">
@@ -416,7 +474,7 @@
                         </div>
                         <span class="medicine-badge badge-expiring">Refill Soon</span>
                     </div>
-                    <div class="medicine-details">
+                    <div class="medicine-details" style="display: none;">
                         <div class="detail-grid">
                             <div class="detail-item">
                                 <h4>Frequency</h4>
@@ -448,6 +506,10 @@
                                 <i class="fas fa-prescription-bottle-medical"></i>
                                 Request Refill
                             </button>
+                            <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                Explain Medicine
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -465,6 +527,46 @@
                 </div>
             </div>
             
+            <div class="doctor-instructions">
+                <div class="panel-header">
+                    <h3>Doctor's Instructions</h3>
+                    <div class="language-toggle">
+                        <button class="action-btn secondary-btn language-btn active" data-lang="en">
+                            <i class="fas fa-language"></i> English
+                        </button>
+                        <button class="action-btn secondary-btn language-btn" data-lang="hi">
+                            <i class="fas fa-language"></i> हिंदी
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="instruction-content">
+                    <div class="instruction-text" data-lang="en">
+                        <p>Take Amoxicillin 500mg three times a day after meals. Complete the entire course of antibiotics even if you start feeling better. Avoid alcohol and dairy products 2 hours before and after taking the medication.</p>
+                        <div class="instruction-actions">
+                            <button class="action-btn primary-btn play-instructions-btn">
+                                <i class="fas fa-play-circle"></i> Play Instructions
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-print"></i> Print Instructions
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-text" data-lang="hi" style="display: none;">
+                        <p>अमोक्सीसिलिन 500 मिलीग्राम को दिन में तीन बार भोजन के बाद लें। एंटीबायोटिक का पूरा कोर्स पूरा करें, भले ही आप बेहतर महसूस करने लगें। दवा लेने से 2 घंटे पहले और बाद में शराब और डेयरी उत्पादों से बचें।</p>
+                        <div class="instruction-actions">
+                            <button class="action-btn primary-btn play-instructions-btn">
+                                <i class="fas fa-play-circle"></i> निर्देश सुनें
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-print"></i> निर्देश प्रिंट करें
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="ai-assistant">
                 <h3>AI Health Assistant</h3>
                 <p style="color: var(--text-secondary); margin: 12px 0;">Get quick answers about your medications</p>
@@ -499,13 +601,16 @@
             </div>
         </div>
     </div>
-    <script src = "chat.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dotenv@16.4.7/lib/main.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="chat.js"></script>
     <script>
+        // Initial toggleDetails function for expanding/collapsing cards
         function toggleDetails(card) {
             const details = card.querySelector('.medicine-details');
             const allDetails = document.querySelectorAll('.medicine-details');
-            generateContent(details)
+            
             // Close all other details
             allDetails.forEach(detail => {
                 if (detail !== details) {
@@ -513,7 +618,7 @@
                 }
             });
 
-            // Toggle clicked details with animation
+            // Toggle clicked details
             if (details.style.display === 'block') {
                 details.style.display = 'none';
             } else {
@@ -521,6 +626,7 @@
             }
         }
 
+        // Function to handle search functionality
         function searchMedications(query) {
             query = query.toLowerCase();
             const cards = document.querySelectorAll('.medicine-card');
@@ -537,20 +643,7 @@
             });
         }
 
-        async function askQuestion(question) {
-            const responseDiv = document.getElementById('aiResponse');
-            responseDiv.innerHTML = '';
-            responseDiv.classList.add('loading');
-            
-            try {
-               
-                generateContent()
-            } catch (error) {
-                responseDiv.classList.remove('loading');
-                responseDiv.innerHTML = '<p style="color: #dc2626;">Sorry, there was an error processing your question. Please try again.</p>';
-            }
-        }
-
+        // Function to handle custom questions
         function handleCustomQuestion(event) {
             if (event.key === 'Enter') {
                 const question = event.target.value.trim();
@@ -561,24 +654,112 @@
             }
         }
 
-        // Simulate API call - Replace this with your actual API implementation
-        function simulateApiCall(question) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    const responses = {
-                        'What are the side effects of Amoxicillin?': 
-                            'Common side effects of Amoxicillin may include:\n\n• Nausea and vomiting\n• Diarrhea\n• Rash\n• Stomach pain\n\nContact your healthcare provider immediately if you experience severe stomach pain, allergic reactions, or difficulty breathing.',
-                        'How should I store my medications?': 
-                            'To properly store your medications:\n\n• Keep them in a cool, dry place away from direct sunlight\n• Store at room temperature (20-25°C) unless specified otherwise\n• Keep in original containers with proper labels\n• Store out of reach of children and pets\n• Don\'t store in bathroom cabinet due to humidity',
-                        'What if I miss a dose?': 
-                            'If you miss a dose:\n\n• Take it as soon as you remember\n• If it\'s almost time for your next dose, skip the missed dose\n• Never take double doses to make up for missed ones\n• Set reminders to help stay on schedule\n\nContact your healthcare provider if you\'re unsure about what to do.',
-                        'Can I take these medications together?': 
-                            'Based on your current medications:\n\n• Amoxicillin and Lisinopril can be taken together safely\n• Take Amoxicillin with food to reduce stomach upset\n• Space out the medications by at least 2 hours\n• Always inform your healthcare provider about all medications you\'re taking'
-                    };
-                    resolve(responses[question] || 'I\'ll help you find information about that. Please note that you should always consult your healthcare provider for medical advice specific to your situation.');
-                }, 1000);
-            });
+        // Function to handle predefined questions with streaming effect
+        async function askQuestion(question) {
+            const responseDiv = document.getElementById('aiResponse');
+            responseDiv.innerHTML = ''; // Clear previous content
+            
+            // Create a blinking cursor effect
+            const cursor = document.createElement('span');
+            cursor.classList.add('typing-cursor');
+            cursor.innerHTML = '|';
+            responseDiv.appendChild(cursor);
+
+            try {
+                // Use the fetchGeminiResponse from chat.js
+                const response = await fetchGeminiResponse(question);
+                
+                // Remove the cursor
+                responseDiv.removeChild(cursor);
+                responseDiv.innerHTML = ''; // Clear previous content again
+                
+                // Stream the response
+                let index = 0;
+                function typeWriter() {
+                    if (index < response.length) {
+                        responseDiv.innerHTML += response.charAt(index);
+                        index++;
+                        
+                        // Add a slight random variation to typing speed for more natural effect
+                        const typingSpeed = Math.random() * 10 + 20; // between 20-50ms
+                        setTimeout(typeWriter, typingSpeed);
+                    }
+                }
+                
+                // Start the typing effect
+                typeWriter();
+            } catch (error) {
+                responseDiv.innerHTML = '<p style="color: #dc2626;">Sorry, there was an error. Please try again.</p>';
+            }
         }
+
+        // Add a style for the typing cursor
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .typing-cursor {
+                animation: blink 0.7s infinite;
+                display: inline-block;
+                margin-left: 2px;
+            }
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add event listeners for Explain Medicine buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.explain-medicine-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const details = e.target.closest('.medicine-details');
+                    generateContent(details);
+                });
+            });
+        });
+
+        // Language Toggle Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButtons = document.querySelectorAll('.language-btn');
+            const instructionTexts = document.querySelectorAll('.instruction-text');
+            const playButtons = document.querySelectorAll('.play-instructions-btn');
+
+            languageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.dataset.lang;
+
+                    // Toggle active state on buttons
+                    languageButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Show/hide instruction texts
+                    instructionTexts.forEach(text => {
+                        text.style.display = text.dataset.lang === lang ? 'block' : 'none';
+                    });
+                });
+            });
+
+            // Play Instructions (Text-to-Speech)
+            playButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const activeInstructionText = button.closest('.instruction-text').textContent.trim();
+                    
+                    // Use Web Speech API for text-to-speech
+                    if ('speechSynthesis' in window) {
+                        const utterance = new SpeechSynthesisUtterance(activeInstructionText);
+                        
+                        // Set language based on active language
+                        console.log(button.closest('.instruction-text').dataset.lang);
+                        utterance.lang = button.closest('.instruction-text').dataset.lang === 'hi' ? 'hi-IN' : 'en-US';
+                        
+                        window.speechSynthesis.speak(utterance);
+                    } else {
+                        alert('Text-to-speech not supported in this browser.');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
