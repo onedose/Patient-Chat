@@ -1,4 +1,4 @@
-const token ="ya29.a0AXeO80SsB_9Z_wq653BnbL5SnAiu9QSXXQZ7GjT1MLWnTdOFKIkOnCtlfp5UpEANElNE7ZPqK86g5m-5QgpIECttr9QWipuOwly9rytNt1etAjIkx9SdFNGOTfpFqWMNhcuenFLBgeNbFVEVIXYMjPaVKdCSZ0SE_VJPkie_ezaXctHHfXWbkeeUlWOdicivrqBez2Y-MSrLbyQkbhFBdmfsgrPnRNstmZWsWmy1Ao0qgY7Gvlz3lHbZ_DoZT72N7_u4bcmpmYh5bczCrn5XiYruKm_4YSK_lP0rZmjpCHAaoxgPutGK02530TEE6Nnin0nhDdLh9T5rZZiGZgBAmE8SAkYKtBBmm-tRWRl0dvhXi5c9PCfmfIXBQPRI0yJ_oq8gAmSeq6f6DXdvjSODdfucMNDmgw0D4ZjRaCgYKASsSARMSFQHGX2Mi0YwnhwqcTP0RpIQ6wt7YIg0427"
+const token ="ya29.a0AXeO80RPVp8XQ6ZPXUdkhWadvGpLsqPBolqHrgylUD192yPiIFHPYRKcT1MebuX9Tr1CFfaJtm_IoekOXMfCwD_IVupzhMMFShq3zZMEbjJ3kQT_m0buhMZCaAT8xOWiYSb4xRrFLw3Ygcov1MYxLbx0hlYCokIkn3pQXV34I8ak4nXoJHTensl3K5HaDqHBDyDFMaxMWF_gK310vQH6L1WEuPOGJ1WXE0mmqifmBZRKk_B-_KYRMOfyCxzp_DQRcshTGF5mMlRayJRjtnLNEhBgnJ2WIyMIafvvQuRaSAfn3YJ8_P64BY_FTRmRXzj6cYcvsQgNeDPuSufCCur9FqUisXAawcrQuuvwby5Dtmxph-FF7oh0CjWWlT2MTD6ctF-OJ00byE6nRFCBH8R4jyGOiRuyFLdtYy_qaCgYKAQESARMSFQHGX2MiNEtthiLhBtCOZk-FoBqVtA0427"
 const endpoint = "https://us-central1-aiplatform.googleapis.com/v1/projects/onedose-425510/locations/us-central1/publishers/google/models/gemini-2.0-flash-001:generateContent";
 
 const headers = {
@@ -9,111 +9,56 @@ const headers = {
 async function generateContent(details) {
   if (!details) return;
 
-  const medicineDetails = details;
-  // Extract the medicine name from the card
-  const medicineName = medicineDetails.closest('.medicine-card').querySelector('.medicine-title h3').textContent;
-  
-  // Modify selectors to use standard querySelector methods
-  const frequencyElement = Array.from(medicineDetails.querySelectorAll('.detail-item')).find(item => 
-    item.querySelector('h4') && item.querySelector('h4').textContent.trim() === 'Frequency'
-  );
-  const frequency = frequencyElement ? frequencyElement.querySelector('p').textContent.trim() : "Not available";
-
-  const durationElement = Array.from(medicineDetails.querySelectorAll('.detail-item')).find(item => 
-    item.querySelector('h4') && item.querySelector('h4').textContent.trim() === 'Duration'
-  );
-  const duration = durationElement ? durationElement.querySelector('p').textContent.trim() : "Not available";
-
-  const progressElement = Array.from(medicineDetails.querySelectorAll('.detail-item')).find(item => 
-    item.querySelector('h4') && item.querySelector('h4').textContent.trim() === 'Progress'
-  );
-  const progressRemaining = progressElement ? progressElement.querySelector('p').textContent.trim() : "Not available";
-  
-  const progressPercent = medicineDetails.querySelector('.progress-fill') ? 
-    medicineDetails.querySelector('.progress-fill').style.width.trim() : 
-    "Not available";
-
-  const nextDoseElement = Array.from(medicineDetails.querySelectorAll('.detail-item')).find(item => 
-    item.querySelector('h4') && item.querySelector('h4').textContent.trim() === 'Next Dose'
-  );
-  const nextDose = nextDoseElement ? nextDoseElement.querySelector('p').textContent.trim() : "Not available";
-
-  const instructions = medicineDetails.querySelector('p strong + p') ? 
-    medicineDetails.querySelector('p strong + p').textContent.trim() : 
-    "Not available";
-
-  const output = `
-    Medicine: ${medicineName}
-    Frequency: ${frequency}
-    Duration: ${duration}
-    Progress: ${progressRemaining}
-    Progress Percentage: ${progressPercent}
-    Next Dose: ${nextDose}
-    Instructions: ${instructions}
-  `;
-
-  const body = {
-    contents: {
-      role: "user",
-      parts: [
-        {
-          text: `You are a qualified doctor who is capable of suggesting instructions based on already prescribed medicines. **YOU CANNOT GENERATE NAMES OF MEDICINES BUT CAN ONLY SUGGEST INSTRUCTIONS TO TAKE THEM***. Take this medicine detail:
-          ${output}
-          as input and generate the required instructions to give to the patient in the following json format.
-          {"instructions":[]}`,
-        },
-      ],
-    },
-  };
-
   try {
-    // Show loading state in AI response panel
-    const aiResponsePanel = document.getElementById('aiResponse');
-    aiResponsePanel.innerHTML = '<p>Loading instructions...</p>';
+    // Remove the reference to aiResponsePanel
+    // const aiResponsePanel = document.getElementById('aiResponse');
+    // aiResponsePanel.innerHTML = '<p>Loading instructions...</p>';
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    console.log(data);
-    const instructions = JSON.parse(data.candidates[0].content.parts[0].text.replace(/```json\n|\n```/g, ''));
-    
-    // Create HTML for instructions
-    const instructionsHtml = `
-      <h3 class="mb-4" style="color: var(--primary-color)">Instructions for ${medicineName}</h3>
-      <ul style="list-style-type: disc; padding-left: 20px;">
-        ${instructions.instructions.map(instruction => `
-          <li style="margin-bottom: 12px; color: var(--secondary-text-color)">${instruction}</li>
-        `).join('')}
-      </ul>
+    // Prepare the details for Gemini API
+    const medicineDetails = `
+      Medicine Name: ${details.name}
+      Dosage: ${details.dosage}
+      Frequency: ${details.frequency}
+      Instructions: ${details.instructions}
     `;
-    
-    // Update AI response panel
-    aiResponsePanel.innerHTML = instructionsHtml;
+
+    // Add a loading message to the chat
+    appendMessage('Generating medication explanation...', 'bot');
+
+    // Use fetchGeminiResponse to get detailed explanation
+    const response = await fetchGeminiResponse(`Provide a detailed, patient-friendly explanation of this medication: ${medicineDetails}`);
+
+    // Add the response to the chat
+    appendMessage(response, 'bot');
 
   } catch (error) {
     console.error("Error:", error);
-    // Show error in AI response panel
-    document.getElementById('aiResponse').innerHTML = `
-      <p style="color: #dc2626;">Sorry, there was an error getting the instructions. Please try again.</p>
-    `;
+    // Show error in chat
+    appendMessage('Sorry, there was an error getting the medication instructions. Please try again.', 'bot');
   }
 }
 
-// Add click handler for Explain Medicine buttons
+// Modify the explain medicine button event listener
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.medicine-card').forEach(card => {
-    const explainButton = card.querySelector('.quick-actions button:last-child');
-    explainButton.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent card toggle
-      const details = card.querySelector('.medicine-details');
+  const explainButtons = document.querySelectorAll('.explain-medicine-btn');
+  
+  explainButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent card toggle
+      
+      // Get medicine details from the card
+      const medicineCard = button.closest('.medicine-card');
+      const medicineName = medicineCard.querySelector('.medicine-title h3').textContent;
+      const medicineDetails = medicineCard.querySelector('.medicine-details');
+      
+      const details = {
+        name: medicineName,
+        dosage: medicineDetails.querySelector('.detail-item:nth-child(2) p').textContent,
+        frequency: medicineDetails.querySelector('.detail-item:nth-child(1) p').textContent,
+        instructions: medicineDetails.querySelector('p:last-of-type').textContent
+      };
+
+      // Generate content with the extracted details
       generateContent(details);
     });
   });
