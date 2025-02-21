@@ -1238,6 +1238,51 @@ function stopSpeaking() {
             const instructionTexts = document.querySelectorAll('.instruction-text');
             const playButtons = document.querySelectorAll('.play-instructions-btn');
 
+            // Function to handle text-to-speech
+            function toggleInstructionSpeech(button) {
+                const instructionTextElement = button.closest('.instruction-text').querySelector('p');
+                const activeInstructionText = instructionTextElement.textContent.trim();
+                
+                // If speech is already playing, stop it
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                    button.innerHTML = '<i class="fas fa-play-circle"></i> Play Instructions';
+                    return;
+                }
+                
+                // Use Web Speech API for text-to-speech
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(activeInstructionText);
+                    
+                    // Set language based on active language
+                    utterance.lang = button.closest('.instruction-text').dataset.lang === 'hi' ? 'hi-IN' : 'en-US';
+                    
+                    // Change button text while speaking
+                    button.innerHTML = '<i class="fas fa-stop-circle"></i> Stop Instructions';
+                    
+                    // Event listeners to handle button state
+                    utterance.onend = () => {
+                        button.innerHTML = '<i class="fas fa-play-circle"></i> Play Instructions';
+                    };
+                    
+                    utterance.onerror = () => {
+                        button.innerHTML = '<i class="fas fa-play-circle"></i> Play Instructions';
+                    };
+                    
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert('Text-to-speech not supported in this browser.');
+                }
+            }
+
+            // Attach event listeners to play buttons
+            playButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleInstructionSpeech(button);
+                });
+            });
+
+            // Rest of the existing language toggle code remains the same
             languageButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const lang = button.dataset.lang;
@@ -1250,26 +1295,6 @@ function stopSpeaking() {
                     instructionTexts.forEach(text => {
                         text.style.display = text.dataset.lang === lang ? 'block' : 'none';
                     });
-                });
-            });
-
-            // Play Instructions (Text-to-Speech)
-            playButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const activeInstructionText = button.closest('.instruction-text').textContent.trim();
-                    
-                    // Use Web Speech API for text-to-speech
-                    if ('speechSynthesis' in window) {
-                        const utterance = new SpeechSynthesisUtterance(activeInstructionText);
-                        
-                        // Set language based on active language
-                        console.log(button.closest('.instruction-text').dataset.lang);
-                        utterance.lang = button.closest('.instruction-text').dataset.lang === 'hi' ? 'hi-IN' : 'en-US';
-                        
-                        window.speechSynthesis.speak(utterance);
-                    } else {
-                        alert('Text-to-speech not supported in this browser.');
-                    }
                 });
             });
         });
