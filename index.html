@@ -399,276 +399,248 @@
         }
 
         .ai-tabs {
-    display: flex;
-    margin-bottom: 20px;
-}
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 122, 153, 0.1);
+        }
 
-.tab-btn {
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
+        .tab-btn {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--secondary-text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
 
-.tab-btn.active {
-    background-color: #007BFF;
-    color: white;
-}
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
 
-.tab-content {
-    display: none;
-}
+        .tab-content {
+            display: none;
+        }
 
-.tab-content.active {
-    display: block;
-}
+        .tab-content.active {
+            display: block;
+        }
 
-.animation-container {
-    display: flex;
-    padding: 100px 0 100px 0;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
+        .animation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            height: 150px; /* Reduced height */
+            overflow: hidden;
+        }
 
-.assistant-animation {
-    width: 200px;
-    height: auto;
-    animation: rotateAnimation 2s infinite;
-}
+        .assistant-animation {
+            max-width: 150px; /* Limit width */
+            max-height: 150px; /* Limit height */
+            object-fit: contain;
+        }
 
+        .ai-assistant .instruction-actions .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
 
-.ai-assistant .assistant-ui {
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;  /* Adding space at the top */
-}
+        .ai-assistant .instruction-actions .action-btn i {
+            margin-right: 5px;
+        }
 
-.animation-container {
-    margin-bottom: 20px;  /* Space between the logo and buttons */
-}
+        /* Pulse effect for when speaking */
+        @keyframes logoPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
 
-.assistant-animation {
-    width: 200px;
-    height: auto;
-    transition: transform 1s ease-in-out;
-}
+        /* New Navbar Styles */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 15px 23px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-bottom: 1px solid rgba(0, 122, 153, 0.1);
+            margin-bottom: 24px;
+            border-radius: 16px;
+        }
 
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
+        .navbar-brand i {
+            font-size: 2rem;
+        }
 
+        .navbar-search {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            max-width: 400px;
+            margin-left: auto;
+        }
 
-button#startSpeakingBtn {
-    margin-top: 20px;  /* Space between the button and animation */
-}
-.animation-container {
-    width: 100px;
-    height: 100px;
-    transition: all 0.5s ease-in-out; /* Smooth transition for expanding */
-    overflow: hidden;
-}
+        .navbar-search input {
+            flex-grow: 1;
+            padding: 10px 16px;
+            border: 2px solid rgba(0, 122, 153, 0.2);
+            border-radius: 24px 0 0 24px;
+            font-size: 0.875rem;
+        }
 
-.animation-container.expanded {
-    width: 100%;  /* Expanded width */
-    height: 100%; /* Expanded height */
-    /* padding: 20px; */
-    /* background-color: #f0f0f0;  Optional background color */
-    /* border-radius: 10px;  Optional rounded corners */
-}
+        .navbar-search button {
+            padding: 10px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 24px 24px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* Animation for the logo */
-.assistant-animation {
-    width: 100%;
-    height: 100%;
-    transition: transform 1s ease-in-out;
-}
+        .navbar-search button:hover {
+            background-color: var(--primary-hover);
+        }
 
+        /* Patient Search Popup Styles */
+        .patient-search-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
 
+        .patient-search-popup-content {
+            background-color: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 70vh;
+            padding: 24px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Pulse effect for when speaking */
-@keyframes logoPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
+        .patient-search-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-/* New Navbar Styles */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    padding: 15px 23px;
-    box-shadow: 0 4px 12px var(--shadow-color);
-    border-bottom: 1px solid rgba(0, 122, 153, 0.1);
-    margin-bottom: 24px;
-    border-radius: 16px;
-}
+        .patient-search-header input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(0, 122, 153, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-right: 12px;
+        }
 
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
+        .close-popup-btn {
+            background: none;
+            border: none;
+            color: var(--secondary-text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-.navbar-brand i {
-    font-size: 2rem;
-}
+        .close-popup-btn:hover {
+            color: var(--primary-color);
+        }
 
-.navbar-search {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    max-width: 400px;
-    margin-left: auto;
-}
+        .patient-search-popup-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
 
-.navbar-search input {
-    flex-grow: 1;
-    padding: 10px 16px;
-    border: 2px solid rgba(0, 122, 153, 0.2);
-    border-radius: 24px 0 0 24px;
-    font-size: 0.875rem;
-}
+        .patient-result-card {
+            background-color: rgba(0, 122, 153, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
 
-.navbar-search button {
-    padding: 10px 16px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 0 24px 24px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .patient-result-card:hover {
+            background-color: rgba(0, 122, 153, 0.1);
+            border-color: rgba(0, 122, 153, 0.2);
+            transform: translateY(-4px);
+        }
 
-.navbar-search button:hover {
-    background-color: var(--primary-hover);
-}
+        .patient-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-weight: bold;
+        }
 
-/* Patient Search Popup Styles */
-.patient-search-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-}
+        .patient-details {
+            flex-grow: 1;
+        }
 
-.patient-search-popup-content {
-    background-color: white;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 70vh;
-    padding: 24px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-}
+        .patient-details h3 {
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
 
-.patient-search-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    position: relative;
-}
+        .patient-details p {
+            color: var(--secondary-text-color);
+            font-size: 0.875rem;
+        }
 
-.patient-search-header input {
-    flex-grow: 1;
-    padding: 12px 16px;
-    border: 2px solid rgba(0, 122, 153, 0.2);
-    border-radius: 12px;
-    font-size: 1rem;
-    margin-right: 12px;
-}
-
-.close-popup-btn {
-    background: none;
-    border: none;
-    color: var(--secondary-text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.close-popup-btn:hover {
-    color: var(--primary-color);
-}
-
-.patient-search-popup-results {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-.patient-result-card {
-    background-color: rgba(0, 122, 153, 0.05);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-
-.patient-result-card:hover {
-    background-color: rgba(0, 122, 153, 0.1);
-    border-color: rgba(0, 122, 153, 0.2);
-    transform: translateY(-4px);
-}
-
-.patient-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 16px;
-    font-weight: bold;
-}
-
-.patient-details {
-    flex-grow: 1;
-}
-
-.patient-details h3 {
-    margin-bottom: 8px;
-    color: var(--primary-color);
-}
-
-.patient-details p {
-    color: var(--secondary-text-color);
-    font-size: 0.875rem;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
     
 
@@ -722,227 +694,319 @@ button#startSpeakingBtn {
             </div>
             
             <div class="search-bar">
-                <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search medications..." onkeyup="searchMedications(this.value)">
             </div>
 
             <div class="medicine-list">
-                <!-- Medicine Card 1 -->
-                <div class="medicine-card" onclick="toggleDetails(this)">
-                    <div class="medicine-header">
-                        <div class="medicine-title">
-                            <i class="fas fa-pills" style="color: var(--primary-color)"></i>
-                            <h3>Amoxicillin 500mg</h3>
+                <!-- Current Doses (Afternoon Medications) -->
+                <div class="panel-header">
+                    <h2>Current Doses</h2>
+                </div>
+                <div class="time-group current-doses">
+                    <!-- Furosemide -->
+                    <div class="medicine-card" onclick="toggleDetails(this)">
+                        <div class="medicine-header">
+                            <div class="medicine-title">
+                                <i class="fas fa-pills" style="color: var(--warning-color)"></i>
+                                <h3>Furosemide 40mg</h3>
+                            </div>
+                            <span class="medicine-badge badge-active">Active Now</span>
                         </div>
-                        <span class="medicine-badge badge-active">Active</span>
-                    </div>
-                    <div class="medicine-details" style="display: none;">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <h4>Day Frequency</h4>
-                                <p>M-T-0-0-0-Sa-Su</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Dose Frequency</h4>
-                                <p>1-1-1-0</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Progress</h4>
-                                <p>14 days remaining</p>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 40%"></div>
+                        <div class="medicine-details" style="display: none;">
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <h4>Dose Time</h4>
+                                    <p>12:00 PM</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Quantity</h4>
+                                    <p>1 tablet</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Purpose</h4>
+                                    <p>Fluid Retention Management</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Status</h4>
+                                    <p>Ready to Take</p>
                                 </div>
                             </div>
-                            <div class="detail-item">
-                                <h4>Duration</h4>
-                                <p>05/02/2025 - 07/03/2025</p>
+                            <p><strong>Instructions:</strong> For fluid retention. Monitor urine output; stop if severe dehydration, dizziness, or weakness occurs.</p>
+                            <div class="quick-actions">
+                                <button class="action-btn primary-btn">
+                                    <i class="fas fa-check-circle"></i> Mark as Taken
+                                </button>
+                                <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                                    <i class="fas fa-info-circle"></i> Explain Medicine
+                                </button>
                             </div>
                         </div>
-                        <p><strong>Instructions:</strong> Take with food. Complete the full course.</p>
-                        <div class="quick-actions">
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-bell"></i>
-                                Set Reminder
-                            </button>
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-notes-medical"></i>
-                                View History
-                            </button>
-                            <button class="action-btn secondary-btn explain-medicine-btn" id="Amoxicillin-button" onclick="event.stopPropagation()">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                Explain Medicine
-                            </button>
+                    </div>
+
+                    <!-- Clopidogrel -->
+                    <div class="medicine-card" onclick="toggleDetails(this)">
+                        <div class="medicine-header">
+                            <div class="medicine-title">
+                                <i class="fas fa-pills" style="color: var(--warning-color)"></i>
+                                <h3>Clopidogrel 75mg</h3>
+                            </div>
+                            <span class="medicine-badge badge-active">Active Now</span>
+                        </div>
+                        <div class="medicine-details" style="display: none;">
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <h4>Dose Time</h4>
+                                    <p>12:30 PM</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Quantity</h4>
+                                    <p>1 tablet</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Purpose</h4>
+                                    <p>Blood Thinning</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Status</h4>
+                                    <p>Upcoming</p>
+                                </div>
+                            </div>
+                            <p><strong>Instructions:</strong> Take with food. Avoid alcohol and inform doctor about any unusual bleeding.</p>
+                            <div class="quick-actions">
+                                <button class="action-btn primary-btn">
+                                    <i class="fas fa-check-circle"></i> Mark as Taken
+                                </button>
+                                <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
+                                    <i class="fas fa-info-circle"></i> Explain Medicine
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Medicine Card 2 -->
-                <div class="medicine-card" onclick="toggleDetails(this)">
-                    <div class="medicine-header">
-                        <div class="medicine-title">
-                            <i class="fas fa-capsules" style="color: var(--warning-color)"></i>
-                            <h3>Lisinopril 10mg</h3>
-                        </div>
-                        <span class="medicine-badge badge-expiring">Refill Soon</span>
-                    </div>
-                    <div class="medicine-details" style="display: none;">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <h4>Frequency</h4>
-                                <p>Once daily</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Duration</h4>
-                                <p>Ongoing</p>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Supply Left</h4>
-                                <p>5 days remaining</p>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 15%"></div>
+                <!-- Upcoming Doses -->
+                <div class="panel-header" style="margin-top: 24px;">
+                    <h2>Upcoming Doses</h2>
+                </div>
+                <div class="time-group upcoming-doses">
+                    <!-- Morning Medications -->
+                    <div class="dose-section">
+                        <div class="medicine-card" onclick="toggleDetails(this)">
+                            <div class="medicine-header">
+                                <div class="medicine-title">
+                                    <i class="fas fa-pills" style="color: var(--primary-color)"></i>
+                                    <h3>Aspirin 75mg</h3>
                                 </div>
+                                <span class="medicine-badge badge-active">Upcoming</span>
                             </div>
-                            <div class="detail-item">
-                                <h4>Next Dose</h4>
-                                <p>Tomorrow 8:00 AM</p>
+                            <div class="medicine-details" style="display: none;">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <h4>Dose Time</h4>
+                                        <p>8:00 AM</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Quantity</h4>
+                                        <p>1 tablet</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Purpose</h4>
+                                        <p>Blood Clot Prevention</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Status</h4>
+                                        <p>Upcoming</p>
+                                    </div>
+                                </div>
+                                <p><strong>Instructions:</strong> Take with food to prevent blood clots. Do not stop without consulting a doctor.</p>
                             </div>
                         </div>
-                        <p><strong>Instructions:</strong> Take in the morning. Avoid grapefruit.</p>
-                        <div class="quick-actions">
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-bell"></i>
-                                Set Reminder
-                            </button>
-                            <button class="action-btn secondary-btn">
-                                <i class="fas fa-prescription-bottle-medical"></i>
-                                Request Refill
-                            </button>
-                            <button class="action-btn secondary-btn explain-medicine-btn" onclick="event.stopPropagation()">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                Explain Medicine
-                            </button>
+                        <!-- Add other morning medications similarly -->
+                    </div>
+
+                    <!-- Evening Medications -->
+                    <div class="dose-section">
+                        <div class="medicine-card" onclick="toggleDetails(this)">
+                            <div class="medicine-header">
+                                <div class="medicine-title">
+                                    <i class="fas fa-pills" style="color: var(--success-color)"></i>
+                                    <h3>Diltiazem 120mg SR</h3>
+                                </div>
+                                <span class="medicine-badge badge-active">Upcoming</span>
+                            </div>
+                            <div class="medicine-details" style="display: none;">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <h4>Dose Time</h4>
+                                        <p>6:00 PM</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Quantity</h4>
+                                        <p>1 tablet</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Purpose</h4>
+                                        <p>Heart Rate Control</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Status</h4>
+                                        <p>Upcoming</p>
+                                    </div>
+                                </div>
+                                <p><strong>Instructions:</strong> For heart rate and BP control. Do not take with grapefruit juice.</p>
+                            </div>
                         </div>
-                    </div>1
+                        <!-- Add other evening medications similarly -->
+                    </div>
+
+                    <!-- Night Medications -->
+                    <div class="dose-section">
+                        <div class="medicine-card" onclick="toggleDetails(this)">
+                            <div class="medicine-header">
+                                <div class="medicine-title">
+                                    <i class="fas fa-pills" style="color: var(--danger-color)"></i>
+                                    <h3>Warfarin 5mg</h3>
+                                </div>
+                                <span class="medicine-badge badge-active">Upcoming</span>
+                            </div>
+                            <div class="medicine-details" style="display: none;">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <h4>Dose Time</h4>
+                                        <p>10:00 PM</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Quantity</h4>
+                                        <p>1 tablet</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Purpose</h4>
+                                        <p>Blood Clot Prevention</p>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>Status</h4>
+                                        <p>Upcoming</p>
+                                    </div>
+                                </div>
+                                <p><strong>Instructions:</strong> To prevent stroke. Avoid green leafy vegetables; get INR checked regularly.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
- <!-- Right Panel - AI Assistant -->
-<div class="panel">
-    <div class="patient-info">
-        <div class="patien11t-avatar">JD</div>
-        <div class="patient-details">
-            <h3>Janki Devi</h3>
-            <p>Next Appointment: March 1, 2025</p>
-            <p style="color: var(--text-secondary)">Patient ID: #12345</p>
-        </div>
-    </div>
-    
-    <div class="doctor-instructions">
-        <div class="panel-header">
-            <h3>Doctor's Instructions</h3>
-            <div class="language-toggle">
-                <button class="action-btn secondary-btn language-btn active" data-lang="en">
-                    <i class="fas fa-language"></i> English
-                </button>
-                <button class="action-btn secondary-btn language-btn" data-lang="hi">
-                    <i class="fas fa-language"></i> हिंदी
-                </button>
-            </div>
-        </div>
-        
-        <div class="instruction-content">
-            <div class="instruction-text" data-lang="en">
-                <p>Take Amoxicillin 500mg three times a day after meals. Complete the entire course of antibiotics even if you start feeling better. Avoid alcohol and dairy products 2 hours before and after taking the medication.</p>
-                <div class="instruction-actions">
-                    <button class="action-btn primary-btn play-instructions-btn">
-                        <i class="fas fa-play-circle"></i> Play Instructions
-                    </button>
-                    <button class="action-btn secondary-btn">
-                        <i class="fas fa-print"></i> Print Instructions
-                    </button>
+        <!-- Right Panel - AI Assistant -->
+        <div class="panel">
+            <div class="patient-info">
+                <div class="patien11t-avatar">JD</div>
+                <div class="patient-details">
+                    <h3>Janki Devi</h3>
+                    <p>Next Appointment: March 1, 2025</p>
+                    <p style="color: var(--text-secondary)">Patient ID: #12345</p>
                 </div>
             </div>
             
-            <div class="instruction-text" data-lang="hi" style="display: none;">
-                <p>अमोक्सीसिलिन 500 मिलीग्राम को दिन में तीन बार भोजन के बाद लें। एंटीबायोटिक का पूरा कोर्स पूरा करें, भले ही आप बेहतर महसूस करने लगें। दवा लेने से 2 घंटे पहले और बाद में शराब और डेयरी उत्पादों से बचें।</p>
-                <div class="instruction-actions">
-                    <button class="action-btn primary-btn play-instructions-btn">
-                        <i class="fas fa-play-circle"></i> निर्देश सुनें
-                    </button>
-                    <button class="action-btn secondary-btn">
-                        <i class="fas fa-print"></i> निर्देश प्रिंट करें
-                    </button>
+            <div class="doctor-instructions">
+                <div class="panel-header">
+                    <h3>Doctor's Instructions</h3>
+                    <div class="language-toggle">
+                        <button class="action-btn secondary-btn language-btn active" data-lang="en">
+                            <i class="fas fa-language"></i> English
+                        </button>
+                        <button class="action-btn secondary-btn language-btn" data-lang="hi">
+                            <i class="fas fa-language"></i> हिंदी
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="instruction-content">
+                    <div class="instruction-text" data-lang="en">
+                        <p>Take Amoxicillin 500mg three times a day after meals. Complete the entire course of antibiotics even if you start feeling better. Avoid alcohol and dairy products 2 hours before and after taking the medication.</p>
+                        <div class="instruction-actions">
+                            <button class="action-btn primary-btn play-instructions-btn">
+                                <i class="fas fa-play-circle"></i> Play Instructions
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-print"></i> Print Instructions
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-text" data-lang="hi" style="display: none;">
+                        <p>अमोक्सीसिलिन 500 मिलीग्राम को दिन में तीन बार भोजन के बाद लें। एंटीबायोटिक का पूरा कोर्स पूरा करें, भले ही आप बेहतर महसूस करने लगें। दवा लेने से 2 घंटे पहले और बाद में शराब और डेयरी उत्पादों से बचें।</p>
+                        <div class="instruction-actions">
+                            <button class="action-btn primary-btn play-instructions-btn">
+                                <i class="fas fa-play-circle"></i> निर्देश सुनें
+                            </button>
+                            <button class="action-btn secondary-btn">
+                                <i class="fas fa-print"></i> निर्देश प्रिंट करें
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-assistant">
+                <h3>AI Health Assistant</h3>
+                <p style="color: var(--text-secondary); margin: 12px 0;">Get quick answers about your medications</p>
+                
+                <!-- Tabs for Chat and Assistant -->
+                <div class="ai-tabs">
+                    <button class="tab-btn active" onclick="switchTab('chat')">Chat</button>
+                    <button class="tab-btn" onclick="switchTab('assistant')">Assistant</button>
+                </div>
+                
+                <!-- Animated PNG Section -->
+                <div class="ai-content">
+                    <div id="chat" class="tab-content active">
+                        <div class="suggested-questions">
+                            <button class="question-btn" onclick="askQuestion('What are the side effects of Amoxicillin?')">
+                                <i class="fas fa-circle-question"></i>
+                                What are the side effects of Amoxicillin?
+                            </button>
+                            <button class="question-btn" onclick="askQuestion('How should I store my medications?')">
+                                <i class="fas fa-box-archive"></i>
+                                How should I store my medications?
+                            </button>
+                            <button class="question-btn" onclick="askQuestion('What if I miss a dose?')">
+                                <i class="fas fa-clock"></i>
+                                What if I miss a dose?
+                            </button>
+                            <button class="question-btn" onclick="askQuestion('Can I take these medications together?')">
+                                <i class="fas fa-layer-group"></i>
+                                Can I take these medications together?
+                            </button>
+                        </div>
+                        <div class="ai-response" id="aiResponse">
+                            <p style="color: var(--text-secondary)">Select a question above or type your own below</p>
+                        </div>
+
+                        <div class="search-bar" style="margin-top: 20px;">
+                            <input type="text" placeholder="Type your question here..." onkeypress="handleCustomQuestion(event)">
+                        </div>
+                    </div>
+
+                    <div id="assistant" class="tab-content">
+                        <div class="assistant-ui">
+                            <div class="animation-container" id="animationContainer">
+                                <img id="assistantLogo" src="infinity.gif" alt="Assistant Animation" class="assistant-animation">
+                            </div>
+
+                            <div class="instruction-actions">
+                                <button class="action-btn primary-btn" id="startSpeakingBtn" onclick="startSpeaking()">
+                                    <i class="fas fa-microphone"></i> Start Speaking
+                                </button>
+                                <button class="action-btn secondary-btn">
+                                    <i class="fas fa-print"></i> Print Instructions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="ai-assistant">
-        <h3>AI Health Assistant</h3>
-        <p style="color: var(--text-secondary); margin: 12px 0;">Get quick answers about your medications</p>
-        
-        <!-- Tabs for Chat and Assistant -->
-        <div class="ai-tabs">
-            <button class="tab-btn active" onclick="switchTab('chat')">Chat</button>
-            <button class="tab-btn" onclick="switchTab('assistant')">Assistant</button>
-        </div>
-        
-        <!-- Animated PNG Section -->
-        <div class="ai-content">
-            <div id="chat" class="tab-content active">
-                <div class="suggested-questions">
-                    <button class="question-btn" onclick="askQuestion('What are the side effects of Amoxicillin?')">
-                        <i class="fas fa-circle-question"></i>
-                        What are the side effects of Amoxicillin?
-                    </button>
-                    <button class="question-btn" onclick="askQuestion('How should I store my medications?')">
-                        <i class="fas fa-box-archive"></i>
-                        How should I store my medications?
-                    </button>
-                    <button class="question-btn" onclick="askQuestion('What if I miss a dose?')">
-                        <i class="fas fa-clock"></i>
-                        What if I miss a dose?
-                    </button>
-                    <button class="question-btn" onclick="askQuestion('Can I take these medications together?')">
-                        <i class="fas fa-layer-group"></i>
-                        Can I take these medications together?
-                    </button>
-                </div>
-                <div class="ai-response" id="aiResponse">
-                    <p style="color: var(--text-secondary)">Select a question above or type your own below</p>
-                </div>
-
-                <div class="search-bar" style="margin-top: 20px;">
-                    <i class="fas fa-message"></i>
-                    <input type="text" placeholder="Type your question here..." onkeypress="handleCustomQuestion(event)">
-                </div>
-            </div>
-
-            <div id="assistant" class="tab-content">
-                <div class="assistant-ui">
-                    <!-- Adding space for better layout -->
-                    <div class="animation-container" id="animationContainer">
-                        <img id="assistantLogo" src="infinity.gif" alt="Assistant Animation" class="assistant-animation">
-                    </div>
-
-                    <div class="instruction-actions">
-                        <!-- New button for starting speaking animation -->
-                        <button class="action-btn primary-btn" id="startSpeakingBtn" onclick="startSpeaking()">
-                            <i class="fas fa-microphone"></i> Start Speaking
-                        </button>
-                        <button class="action-btn secondary-btn">
-                            <i class="fas fa-print"></i> Print Instructions
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        
-        
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
@@ -1014,7 +1078,7 @@ async function startSpeaking() {
     
     try {
         // Wait for 2.5 seconds to show the gif
-        await new Promise(resolve => setTimeout(resolve, 2500));
+        await new Promise(resolve => setTimeout(resolve, 5000));
         
         // Play the audio
         await audio.play();
