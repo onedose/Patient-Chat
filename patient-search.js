@@ -2,15 +2,15 @@
 const patients = [
     {
         id: "P12345",
-        name: "John Doe",
+        name: "Janki Davi",
         age: 45,
-        gender: "Male",
+        gender: "Female",
         medications: ["Amoxicillin", "Lisinopril"],
         nextAppointment: "March 1, 2025"
     },
     {
         id: "P67890",
-        name: "Jane Smith",
+        name: "Mamta Sharma",
         age: 35,
         gender: "Female",
         medications: ["Metformin", "Atorvastatin"],
@@ -18,7 +18,7 @@ const patients = [
     },
     {
         id: "P54321",
-        name: "Michael Johnson",
+        name: "Raj Verma",
         age: 55,
         gender: "Male",
         medications: ["Warfarin", "Simvastatin"],
@@ -26,7 +26,7 @@ const patients = [
     },
     {
         id: "P98765",
-        name: "Emily Brown",
+        name: "Kamala Rathore",
         age: 28,
         gender: "Female",
         medications: ["Levothyroxine"],
@@ -53,69 +53,48 @@ function closePatientSearchPopup() {
 
 // Function to filter patients
 function filterPatients(query) {
-    query = query.toLowerCase().trim();
+    query = query.toLowerCase();
     const resultsContainer = document.getElementById('patientSearchResults');
     
-    // Filter patients
+    // Clear previous results
+    resultsContainer.innerHTML = '';
+    
+    // Filter patients based on name or ID
     const filteredPatients = patients.filter(patient => 
         patient.name.toLowerCase().includes(query) || 
         patient.id.toLowerCase().includes(query)
     );
-
-    // Clear previous results
-    resultsContainer.innerHTML = '';
-
-    // Populate results
-    if (filteredPatients.length === 0) {
-        resultsContainer.innerHTML = '<p style="text-align: center; color: var(--secondary-text-color);">No patients found.</p>';
-    } else {
-        filteredPatients.forEach(patient => {
-            const resultItem = document.createElement('div');
-            resultItem.classList.add('patient-result-item');
-            resultItem.innerHTML = `
-                <div class="patient-result-avatar">${patient.name.charAt(0)}</div>
-                <div class="patient-result-details">
-                    <h3>${patient.name}</h3>
-                    <p>ID: ${patient.id} | Age: ${patient.age} | ${patient.gender}</p>
-                    <p>Medications: ${patient.medications.join(', ')}</p>
-                </div>
-            `;
-            resultItem.onclick = () => selectPatient(patient);
-            resultsContainer.appendChild(resultItem);
-        });
-    }
+    
+    // Create result cards
+    filteredPatients.forEach(patient => {
+        const resultCard = document.createElement('div');
+        resultCard.classList.add('patient-result-card');
+        resultCard.innerHTML = `
+            <div class="patient-avatar">${patient.name.charAt(0)}</div>
+            <div class="patient-details">
+                <h3>${patient.name}</h3>
+                <p>ID: ${patient.id} | Age: ${patient.age} | Gender: ${patient.gender}</p>
+                <p>Next Appointment: ${patient.nextAppointment}</p>
+            </div>
+        `;
+        resultCard.onclick = () => selectPatient(patient);
+        resultsContainer.appendChild(resultCard);
+    });
 }
 
 // Function to select a patient
 function selectPatient(patient) {
-    // Update patient context in the right panel
-    const patientAvatar = document.querySelector('.patient-avatar');
-    const patientName = document.querySelector('.patient-details h3');
-    const patientAppointment = document.querySelector('.patient-details p:first-of-type');
-    const patientId = document.querySelector('.patient-details p:last-of-type');
-
-    if (patientAvatar) patientAvatar.textContent = patient.name.charAt(0) + patient.name.charAt(1);
-    if (patientName) patientName.textContent = patient.name;
-    if (patientAppointment) patientAppointment.textContent = `Next Appointment: ${patient.nextAppointment}`;
-    if (patientId) patientId.textContent = `Patient ID: ${patient.id}`;
-
-    // Close popup
+    console.log('Selected Patient:', patient);
+    // You can add more functionality here, like updating the UI or navigating to patient details
     closePatientSearchPopup();
 }
 
-// Event listener to close popup when clicking outside
+// Add event listener to close popup when clicking outside
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('patientSearchPopup');
-    
-    popup.addEventListener('click', (event) => {
-        if (event.target === popup) {
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
             closePatientSearchPopup();
         }
-    });
-
-    // Add event listener to search input to filter in real-time
-    const popupInput = document.getElementById('patientSearchPopupInput');
-    popupInput.addEventListener('input', (event) => {
-        filterPatients(event.target.value);
     });
 });
