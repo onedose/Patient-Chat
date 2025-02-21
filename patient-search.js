@@ -73,7 +73,7 @@ function filterPatients(query) {
             <div class="patient-avatar">${patient.name.charAt(0)}</div>
             <div class="patient-details">
                 <h3>${patient.name}</h3>
-                <p>ID: ${patient.id} | Age: ${patient.age} | Gender: ${patient.gender}</p>
+                <p>Dose ID: ${patient.id} | Age: ${patient.age} | Gender: ${patient.gender}</p>
                 <p>Next Appointment: ${patient.nextAppointment}</p>
             </div>
         `;

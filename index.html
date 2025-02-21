@@ -641,6 +641,17 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        .navbar-brand img {
+            height: 40px;
+            max-width: 150px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
     </style>
     
 
@@ -650,13 +661,12 @@
     <!-- New Navbar -->
     <nav class="navbar">
         <div class="navbar-brand">
-            <i class="fas fa-capsules"></i>
-            OneDose
+            <img src="logo.png" alt="OneDose Logo" style="height: 40px; margin-right: 10px;">
         </div>
         <div class="navbar-search">
             <input 
                 type="text" 
-                placeholder="Search patients..." 
+                placeholder="Search doses..." 
                 id="patientSearchInput" 
                 onfocus="showPatientSearchPopup()"
             >
@@ -673,7 +683,7 @@
                 <input 
                     type="text" 
                     id="patientSearchPopupInput" 
-                    placeholder="Search by name or ID"
+                    placeholder="Search by dose id or name"
                     oninput="filterPatients(this.value)"
                 >
                 <button class="close-popup-btn" onclick="closePatientSearchPopup()">
@@ -690,7 +700,7 @@
         <!-- Left Panel - Medicine List -->
         <div class="panel">
             <div class="panel-header">
-                <h2>My Medications</h2>
+                <h2>Patient's Medication</h2>
             </div>
             
             <div class="search-bar">
@@ -700,7 +710,7 @@
             <div class="medicine-list">
                 <!-- Current Doses (Afternoon Medications) -->
                 <div class="panel-header">
-                    <h2>Current Doses</h2>
+                    <h2>Current Doses (21 Feb 2025 , 1:00 PM)</h2>
                 </div>
                 <div class="time-group current-doses">
                     <!-- Furosemide -->
@@ -708,7 +718,7 @@
                         <div class="medicine-header">
                             <div class="medicine-title">
                                 <i class="fas fa-pills" style="color: var(--warning-color)"></i>
-                                <h3>Furosemide 40mg</h3>
+                                <h3>Furosemide 40mg (1)</h3>
                             </div>
                             <span class="medicine-badge badge-active">Active Now</span>
                         </div>
@@ -748,7 +758,7 @@
                         <div class="medicine-header">
                             <div class="medicine-title">
                                 <i class="fas fa-pills" style="color: var(--warning-color)"></i>
-                                <h3>Clopidogrel 75mg</h3>
+                                <h3>Clopidogrel 75mg (1)</h3>
                             </div>
                             <span class="medicine-badge badge-active">Active Now</span>
                         </div>
